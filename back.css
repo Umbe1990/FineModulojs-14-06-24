@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+   
+    justify-content: center;
+    column-gap: 100px;
+}
+
+
+.inserimento{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+    margin-top: 3rem;
+    
+}
+body{
+    background-color: rgb(191, 185, 185);
+}
+.table1{
+    height: 600px;
+    width: 1000px;
+    margin-top: 50px;
+    margin-left:300px;
+    
+}
+.table1 th{
+    font-size: 2rem;
+    color: red;
+}
+.table1 td{
+    font-size: 1.5rem;
+    
+}
