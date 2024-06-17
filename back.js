@@ -71,6 +71,8 @@ function removeModal(){
   modal.classList.add("d-none")
   let modal3=document.getElementById('modal3');
     modal3.classList.add('d-none')
+    let body=document.getElementById('body')
+    body.classList.remove('body2')
 }
 
 ///funzione stampa prodotto su back 
@@ -154,7 +156,9 @@ function prendiId(id){
 
 //crea modale1
 function modal1(id){
-   
+    let body=document.getElementById('body')
+    body.classList.add('body2')
+    
     let modalFoter=document.getElementById('modalFoter')
     modalFoter.innerHTML=""
     modalFoter.innerHTML+= `<button onclick="prendiId('${id}')" type="button" class="btn btn-primary">cancella</button>`
@@ -178,20 +182,41 @@ function check(){
 }
  //funzione per chiamare modifica
  function chiamaModifica(id){
+    let body=document.getElementById('body')
+    body.classList.add('body2')
     document.getElementById('id').value=id
-    console.log(id)
-let modal3=document.getElementById('modal3');
-modal3.classList.add('d-block')
+   // console.log(id)
+    let modal3=document.getElementById('modal3');
+    modal3.classList.add('d-block')
+
     let name=document.getElementById("name").value
     let description=document.getElementById("description").value
     let brand=document.getElementById("brand").value
     let imageUrl=document.getElementById("imageUrl").value
     let price=document.getElementById("price").value
- }
+    fetch("https://striveschool-api.herokuapp.com/api/product/"+ id,{
+        headers: {
+            "content-type":"application/json",
+           "Authorization": token
+     }})
+     .then(response=>{
+        //console.log(response)
+        response.json().then((pluto)=>{
+            console.log(pluto.name)
+            document.getElementById("name3").value=pluto.name;
+            document.getElementById("description3").value=pluto.description;
+            document.getElementById("brand3").value=pluto.brand;
+            document.getElementById("imageUrl3").value=pluto.imageUrl;
+            document.getElementById("price3").value=pluto.price;
+            
+           
+            })
+     })
 
+}
 function modifica(){
     let idImportato=document.getElementById('id').value
-    console.log(idImportato)
+    //console.log(idImportato)
     let nameModificato=document.getElementById("name3").value
     let descriptionModificato=document.getElementById("description3").value
     let brandModificato=document.getElementById("brand3").value
@@ -216,7 +241,7 @@ function modifica(){
         })
         
     }) .then(response=>{
-            console.log(response)
+            //console.log(response)
             response.json().then((pluto)=>{
                 console.log(pluto)
                 
